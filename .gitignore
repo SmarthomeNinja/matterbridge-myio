@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.mb/
+.bench/
+.cache/
+*.tsbuildinfo
+
+# Internal notes (Hungarian), not published
+DEVELOPMENT.md
+
+# OS / packaging
+.DS_Store
+*.tgz

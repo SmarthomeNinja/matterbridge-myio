@@ -1,0 +1,183 @@
+{
+  "title": "myIO smart home controller",
+  "description": "matterbridge-myio by myIO Smart Home - exposes the outputs, shutters, thermostats and sensors of myIO controllers to Matter",
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Plugin Name",
+      "description": "Plugin name",
+      "type": "string",
+      "readOnly": true,
+      "ui:widget": "hidden"
+    },
+    "type": {
+      "title": "Plugin Type",
+      "description": "Plugin type",
+      "type": "string",
+      "readOnly": true,
+      "ui:widget": "hidden"
+    },
+    "controllers": {
+      "title": "Controllers",
+      "description": "The myIO controllers to bridge. Only the elements visible to the given user are exposed, so a dedicated user with limited permissions is the easiest way to choose what appears in Matter.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name",
+            "description": "A label for the logs (e.g. Ground floor)",
+            "type": "string"
+          },
+          "host": {
+            "title": "Address",
+            "description": "IP address or host name of the controller (e.g. 192.168.1.170)",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string",
+            "format": "password",
+            "ui:widget": "password"
+          }
+        },
+        "required": ["host"]
+      }
+    },
+    "pollInterval": {
+      "title": "Poll interval (ms)",
+      "description": "How often the state is read from the controller. A Due (3.x firmware) is never polled faster than every 2000 ms.",
+      "type": "integer",
+      "minimum": 500,
+      "maximum": 60000,
+      "default": 1000
+    },
+    "rediscoverInterval": {
+      "title": "Rediscover interval (s)",
+      "description": "How often the names and the list of elements are read again. A new, renamed or removed element appears in Matter after at most this time.",
+      "type": "integer",
+      "minimum": 5,
+      "maximum": 86400,
+      "default": 600
+    },
+    "exposeUnnamed": {
+      "title": "Expose unnamed outputs",
+      "description": "By default only the outputs that have a name on the controller are exposed.",
+      "type": "boolean",
+      "default": false
+    },
+    "relayType": {
+      "title": "Relays appear as",
+      "description": "Device type of the on/off outputs whose name has no light keyword.",
+      "type": "string",
+      "enum": ["outlet", "light"],
+      "default": "outlet"
+    },
+    "lightKeywords": {
+      "title": "Light keywords",
+      "description": "An on/off output whose name contains one of these words appears as a light (case and accents are ignored).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default": ["lampa", "vilagitas", "csillar", "spot", "feny", "light", "lamp", "led"]
+    },
+    "exposeShutters": {
+      "title": "Shutters",
+      "description": "Protection pairs (UP / DOWN outputs) appear as window coverings instead of two switches.",
+      "type": "boolean",
+      "default": true
+    },
+    "shutterTravelTime": {
+      "title": "Shutter travel time (s)",
+      "description": "Time of a full run from open to closed. The position shown in Matter is estimated from it.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 600,
+      "default": 30
+    },
+    "shutterTravelTimes": {
+      "title": "Travel time per shutter",
+      "description": "Shutters whose full run takes a different time.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Shutter name",
+            "description": "The name as it appears in Matter",
+            "type": "string"
+          },
+          "seconds": {
+            "title": "Travel time (s)",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 600
+          }
+        },
+        "required": ["name", "seconds"]
+      }
+    },
+    "exposeThermostats": {
+      "title": "Thermostats",
+      "description": "Outputs switched by a temperature sensor appear as thermostats (target = the middle of the ON / OFF thresholds).",
+      "type": "boolean",
+      "default": true
+    },
+    "exposeRgb": {
+      "title": "RGB lights",
+      "description": "Groups named RGB... with R / G / B dimmer channels appear as one colour light.",
+      "type": "boolean",
+      "default": true
+    },
+    "exposeSensors": {
+      "title": "Sensors",
+      "description": "Temperature and humidity sensors, and the universal sensors of type temperature, humidity, dew point, illuminance and pressure.",
+      "type": "boolean",
+      "default": true
+    },
+    "exposeGroups": {
+      "title": "Groups",
+      "description": "Named groups appear as switches.",
+      "type": "boolean",
+      "default": false
+    },
+    "whiteList": {
+      "title": "White List",
+      "description": "Only the devices in the list will be exposed. If the list is empty, all the devices will be exposed.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "selectFrom": "name"
+    },
+    "blackList": {
+      "title": "Black List",
+      "description": "The devices in the list will not be exposed. If the list is empty, no devices will be excluded.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "selectFrom": "name"
+    },
+    "debug": {
+      "title": "Enable Debug",
+      "description": "Log every command sent to the controller and every attribute update.",
+      "type": "boolean",
+      "default": false
+    },
+    "unregisterOnShutdown": {
+      "title": "Unregister On Shutdown",
+      "description": "Unregister all devices on shutdown (development only)",
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

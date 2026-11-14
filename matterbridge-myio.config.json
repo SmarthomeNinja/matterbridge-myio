@@ -1,0 +1,21 @@
+{
+  "name": "matterbridge-myio",
+  "type": "DynamicPlatform",
+  "controllers": [],
+  "pollInterval": 1000,
+  "rediscoverInterval": 600,
+  "exposeUnnamed": false,
+  "relayType": "outlet",
+  "lightKeywords": ["lampa", "vilagitas", "csillar", "spot", "feny", "light", "lamp", "led"],
+  "exposeShutters": true,
+  "shutterTravelTime": 30,
+  "shutterTravelTimes": [],
+  "exposeThermostats": true,
+  "exposeRgb": true,
+  "exposeSensors": true,
+  "exposeGroups": false,
+  "whiteList": [],
+  "blackList": [],
+  "debug": false,
+  "unregisterOnShutdown": false
+}
