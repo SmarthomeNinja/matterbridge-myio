@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.4 (2026-11-17)
+
+Package metadata only. No change in behaviour.
+
+- links to the source code on GitHub and to its issue tracker
+- the homepage is the setup guide on myio.hu (https://myio.hu/en/guides/matter)
+
 ## 0.1.3 (2026-11-13)
 
 Documentation only. No change in behaviour.

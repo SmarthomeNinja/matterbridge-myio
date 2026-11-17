@@ -1,10 +1,17 @@
 {
   "name": "matterbridge-myio",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Matterbridge plugin for myIO smart home controllers",
   "author": "myIO Smart Home Zrt.",
   "license": "Apache-2.0",
-  "homepage": "https://www.npmjs.com/package/matterbridge-myio",
+  "homepage": "https://myio.hu/en/guides/matter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmarthomeNinja/matterbridge-myio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SmarthomeNinja/matterbridge-myio/issues"
+  },
   "help": "https://www.npmjs.com/package/matterbridge-myio#readme",
   "changelog": "https://unpkg.com/matterbridge-myio/CHANGELOG.md",
   "keywords": [
